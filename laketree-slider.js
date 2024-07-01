@@ -61,7 +61,7 @@ export class LakeTreeSlider extends LitElement {
   `
   static properties = {
     title: {type: String },
-    value: {type: String },
+    value: {type: Number },
     minValue: {type: Number },
     minValueLabel: {type: String },
     maxValue: {type: Number },
@@ -105,7 +105,7 @@ export class LakeTreeSlider extends LitElement {
           title: 'Max Value Label'
         },
         value: {
-          type: 'string',
+          type: 'integer',
           title: 'Value',
           isValueField: true,
         },
@@ -159,7 +159,7 @@ sliderChanged(e)  {
 
       const arrMaxValue = [];
       for (let i=0; i <= this._maxValue; i++) {
-
+        if (i%10 != 0) continue;
         var row = {};
         row.id = i;
 
