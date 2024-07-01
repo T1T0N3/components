@@ -107,7 +107,6 @@ export class LakeTreeSlider extends LitElement {
         value: {
           type: 'integer',
           title: 'Value',
-          isValueField: true,
         },
 
         scaleDisplay: {
