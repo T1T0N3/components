@@ -172,7 +172,7 @@ sliderChanged(e)  {
 
         } else {
           row.align = "Left";
-          row.width = 100/this._maxValue;
+          row.width = 10;
         }
 
         arrMaxValue.push(row);
