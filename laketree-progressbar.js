@@ -68,6 +68,7 @@ export class LaketreeProgressbar extends LitElement {
 
     if (this._defaultValue == 0) {  
       this._showLabel = false;
+       this._class = "p"+this._defaultValue;
     }
 
     if(this._showLabel) {
@@ -307,14 +308,10 @@ export class LaketreeProgressbar extends LitElement {
       }
 
     </style>
-
-
-    
-      <div class="laketree-pbar" style="width:${this._defaultValue}%"></div>
     
   <div class="container">
     <div class="c100 ${this._class} blue">
-      <span>${this._displayValue}</span>
+      <span>${this._displayValue} ${this._class}</span>
       <div class="slice">
         <div class="bar"></div>
         <div class="fill"></div>
