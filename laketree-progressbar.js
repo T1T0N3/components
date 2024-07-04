@@ -309,7 +309,7 @@ export class LaketreeProgressbar extends LitElement {
 
     </style>
     
-  <div class="container">
+  <div class="wrapper">
     <div class="c100 ${this._class} blue">
       <span>${this._displayValue} ${this._class}</span>
       <div class="slice">
