@@ -1,214 +1,116 @@
-
-import { html,css, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
-
-export class LakeTreeSlider extends LitElement {
-
+import {
+  html,
+  css,
+  LitElement,
+} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+// define the component
+export class LaketreeProgressbar extends LitElement {
   static styles = css`
+    :host {
+      display: inline-block;
+    }
 
-    .slidecontainer {
+    .container {
       width: 100%;
     }
 
-    .selectedValue {
+    .circle {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .circle svg {
+      transform: rotate(-90deg);
+    }
+
+    .circle circle {
+      fill: none;
+      stroke-width: 10;
+      stroke: var(--circle-bg-color, #e6e6e6);
+    }
+
+    .circle .progress {
+      stroke: var(--circle-color, #4caf50);
+      stroke-linecap: round;
+      stroke-dasharray: 314;
+      stroke-dashoffset: 314;
+      transition: stroke-dashoffset 1s ease;
+    }
+
+    .circle .number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5em;
       font-weight: bold;
-    }  
-
-    .hidden {
-      display: none;
-    }  
-
-    .slider {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 10px;
-      background: #d3d3d3;
-      outline: none;
-      opacity: 0.7;
-      -webkit-transition: .2s;
-      transition: opacity .2s;
-      border-radius:5px;
+      color: var(--circle-text-color, #000);
     }
-    
-    .slider:hover {
-      opacity: 1;
-    }
-    
-    .slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      border-radius:15px;
-      width: 25px;
-      height: 25px;
-      background: var(--ntx-form-theme-color-primary);
-      cursor: pointer;
-    }
-    
-    .slider::-moz-range-thumb {
-      width: 25px;
-      border-radius:15px;
-      height: 25px;
-      background: var(--ntx-form-theme-color-primary);
-      cursor: pointer;
-    }
-          
-    .valueAlignRight {
-      width: 10px !important;
-      text-align: right;
-      text-wrap: nowrap;
-    }
-
-
-  `
-  static properties = {
-    title: {type: String },
-    value: {type: Number },
-    minValue: {type: Number },
-    minValueLabel: {type: String },
-    maxValue: {type: Number },
-    maxValueLabel: {type: String },
-    scaleDisplay: {type: String},
-
-  };
+  `;
 
   static getMetaConfig() {
     return {
-      controlName: 'LakeTree Slider',
-      iconUrl: "https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png",
-      groupName : 'LakeTree',
+      controlName: 'Questionnair score',
+      iconUrl:
+        'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
+      groupName: 'Score',
       fallbackDisableSubmit: false,
       version: '1.2',
-      standardProperties : {
+      standardProperties: {
         defaultValue: true,
         description: true,
         fieldLabel: true,
         readOnly: true,
         required: true,
-        visibility: true
+        visibility: true,
       },
       properties: {
-        minValue: {
+        score: {
           type: 'integer',
-          title: 'Min Value',
-          defaultValue: 0
+          title: 'Score',
+          defaultValue: 0,
         },
-        minValueLabel: {
-          type: 'string',
-          title: 'Min Value Label'
-        },
-        maxValue: {
-          type: 'integer',
-          title: 'Max Value',
-          defaultValue: 10
-        },
-        maxValueLabel: {
-          type: 'string',
-          title: 'Max Value Label'
-        },
-        value: {
-          type: 'integer',
-          title: 'Value',
-        },
-
-        scaleDisplay: {
-          title: 'Scale Display',
-          type: 'string',
-          enum: ['None', 'Pipe', 'Number Scale'],
-          showAsRadio: false,
-          verticalLayout: true,
-          defaultValue: 'Pipe',
-        },
-
       },
-      events: ["ntx-value-change"],
     };
   }
 
+  static properties = {
+    score: { type: Number },
+  };
+
   constructor() {
     super();
+    this.score = 0;
   }
 
+  updated(changedProperties) {
+    if (changedProperties.has('score')) {
+      this.updateCircle();
+    }
+  }
 
-sliderChanged(e)  {
+  updateCircle() {
+    const radius = 50;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (this.score / 100) * circumference;
+    this.shadowRoot.querySelector('.progress').style.strokeDashoffset = offset;
+  }
 
-  const args = {
-    bubbles: true,
-    cancelable: false,
-    composed: true,
-    detail: e.srcElement.value,
-  };
-  const event = new CustomEvent('ntx-value-change', args);
-  this.dispatchEvent(event);
-
+  render() {
+    return html`
+      <div class="container">
+        <div class="circle">
+          <svg width="100" height="100">
+            <circle cx="50" cy="50" r="50"></circle>
+            <circle class="progress" cx="50" cy="50" r="50"></circle>
+          </svg>
+          <div class="number">${this.score}%</div>
+        </div>
+      </div>
+    `;
+  }
 }
 
-      render() {
-        console.log("render");
-    
-//from max value, create table i f required.
-
-
-      //debugger;  
-
-      this._minValue = this.minValue ?? 0;
-      this._maxValue = this.maxValue ?? 10;
-
-      this._defaultValue = this._defaultValue ?? 0;      
-      this.value = this.value ?? this._defaultValue;  //set the value to the default value if not set.
-      this._scaleDisplay = this.scaleDisplay ?? "Pipe";
-
-      const arrMaxValue = [];
-      for (let i=0; i <= this._maxValue; i++) {
-        if (i%10 != 0) continue;
-        var row = {};
-        row.id = i;
-
-        if (this._scaleDisplay == "Pipe") row.display = "|"; 
-        if (this._scaleDisplay == "Number Scale") row.display = i;         
-
-        if (i == this._maxValue) {
-          row.align = "Right";
-          row.width = "";
-
-        } else {
-          row.align = "Left";
-          row.width = 10;
-        }
-
-        arrMaxValue.push(row);
-        
-      }
-      this._disabledStyle = this.readOnly ? "pointer-events: none;opacity:.5;" : ""; //if readonly, set the opacity to 50% and disable pointer events.
-
-      var scaleClass = "";
-      if(this._scaleDisplay == "None") {
-        scaleClass = "hidden";
-      }
-
-        debugger;
-        return html`
-
-                    <div class="slidecontainer" style="${this._disabledStyle}">
-
-                    <div class="${scaleClass}" style="margin: 5px;"><table style="width:100%"  ><tr>
-
-                    ${arrMaxValue.map((row) => html`
-
-                     <td width="${row.width}%" class=\"sliderValue valueAlign${row.align}\" >${row.display}</td>
-
-                    `)}
-
-                    </tr></table></div>
-        
-                    <input type="range" min="${this._minValue}" max="${this._maxValue}" value="${this.value}" class="slider" @change=${this.sliderChanged} @onchange=${this.sliderChanged} id="myRange">
-                    <table style="width:100%;padding-top: 5px;"><tr><td align=left>${this.minValueLabel}</td><td align=right>${this.maxValueLabel}</td></tr></table>
-                    </div>
-            
-        `;
-    
-                  }
-
-}
-
-
-const elementName = 'laketree-slider';
-customElements.define(elementName, LakeTreeSlider);
+const elementName = 'mapei-score';
+customElements.define(elementName, LaketreeProgressbar);
