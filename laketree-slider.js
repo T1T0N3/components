@@ -147,7 +147,7 @@ sliderChanged(e)  {
 //from max value, create table i f required.
 
 
-      debugger;  
+      //debugger;  
 
       this._minValue = this.minValue ?? 0;
       this._maxValue = this.maxValue ?? 10;
