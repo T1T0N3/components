@@ -1,116 +1,123 @@
-import {
-  html,
-  css,
-  LitElement,
-} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
-// define the component
-export class LaketreeProgressbar extends LitElement {
+import { html,css, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+export class LakeTreeSlider extends LitElement {
   static styles = css`
-    :host {
-      display: inline-block;
-    }
-
-    .container {
+    .slidecontainer {
       width: 100%;
     }
-
-    .circle {
-      position: relative;
-      width: 100px;
-      height: 100px;
-    }
-
-    .circle svg {
-      transform: rotate(-90deg);
-    }
-
-    .circle circle {
-      fill: none;
-      stroke-width: 10;
-      stroke: var(--circle-bg-color, #e6e6e6);
-    }
-
-    .circle .progress {
-      stroke: var(--circle-color, #4caf50);
-      stroke-linecap: round;
-      stroke-dasharray: 314;
-      stroke-dashoffset: 314;
-      transition: stroke-dashoffset 1s ease;
-    }
-
-    .circle .number {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.5em;
+    .selectedValue {
       font-weight: bold;
-      color: var(--circle-text-color, #000);
+    }  
+    .hidden {
+      display: none;
+    }  
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 10px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+      border-radius:5px;
     }
-  `;
-
+    
+    .slider:hover {
+      opacity: 1;
+    }
+    
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius:15px;
+      width: 25px;
+      height: 25px;
+      background: var(--ntx-form-theme-color-primary);
+      cursor: pointer;
+    }
+    
+    .slider::-moz-range-thumb {
+      width: 25px;
+      border-radius:15px;
+      height: 25px;
+      background: var(--ntx-form-theme-color-primary);
+      cursor: pointer;
+    }
+          
+    .valueAlignRight {
+      width: 10px !important;
+      text-align: right;
+      text-wrap: nowrap;
+    }
+  `
+  static properties = {
+    title: {type: String },
+    value: {type: Number },
+    minValue: {type: Number },
+    minValueLabel: {type: String },
+    maxValue: {type: Number },
+    maxValueLabel: {type: String },
+    scaleDisplay: {type: String},
+  };
   static getMetaConfig() {
     return {
-      controlName: 'Questionnair score',
-      iconUrl:
-        'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
-      groupName: 'Score',
+      controlName: 'LakeTree Slider',
+      iconUrl: "https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png",
+      groupName : 'LakeTree',
       fallbackDisableSubmit: false,
       version: '1.2',
-      standardProperties: {
+      standardProperties : {
         defaultValue: true,
         description: true,
         fieldLabel: true,
         readOnly: true,
         required: true,
-        visibility: true,
+        visibility: true
       },
       properties: {
-        score: {
+        minValue: {
           type: 'integer',
-          title: 'Score',
-          defaultValue: 0,
+          title: 'Min Value',
+          defaultValue: 0
+        },
+        minValueLabel: {
+          type: 'string',
+          title: 'Min Value Label'
+        },
+        maxValue: {
+          type: 'integer',
+          title: 'Max Value',
+          defaultValue: 10
+        },
+        maxValueLabel: {
+          type: 'string',
+          title: 'Max Value Label'
+        },
+        value: {
+          type: 'integer',
+          title: 'Value',
+        },
+        scaleDisplay: {
+          title: 'Scale Display',
+          type: 'string',
+          enum: ['None', 'Pipe', 'Number Scale'],
+          showAsRadio: false,
+          verticalLayout: true,
+          defaultValue: 'Pipe',
         },
       },
+      events: ["ntx-value-change"],
     };
   }
-
-  static properties = {
-    score: { type: Number },
-  };
-
   constructor() {
     super();
-    this.score = 0;
   }
-
-  updated(changedProperties) {
-    if (changedProperties.has('score')) {
-      this.updateCircle();
-    }
-  }
-
-  updateCircle() {
-    const radius = 50;
-    const circumference = 2 * Math.PI * radius;
-    const offset = circumference - (this.score / 100) * circumference;
-    this.shadowRoot.querySelector('.progress').style.strokeDashoffset = offset;
-  }
-
-  render() {
-    return html`
-      <div class="container">
-        <div class="circle">
-          <svg width="100" height="100">
-            <circle cx="50" cy="50" r="50"></circle>
-            <circle class="progress" cx="50" cy="50" r="50"></circle>
-          </svg>
-          <div class="number">${this.score}%</div>
-        </div>
-      </div>
-    `;
-  }
-}
-
-const elementName = 'mapei-score';
-customElements.define(elementName, LaketreeProgressbar);
+sliderChanged(e)  {
+  const args = {
+    bubbles: true,
+    cancelable: false,
+    composed: true,
+    detail: e.srcElement.value,
+  };
+  const event = new CustomEvent('ntx-value-change', args);
+  this.dispatchEvent(event);
