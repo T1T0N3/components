@@ -121,3 +121,59 @@ sliderChanged(e)  {
   };
   const event = new CustomEvent('ntx-value-change', args);
   this.dispatchEvent(event);
+}
+      render() {
+        console.log("render");
+    
+//from max value, create table i f required.
+
+
+      debugger;  
+      //debugger;  
+
+      this._minValue = this.minValue ?? 0;
+      this._maxValue = this.maxValue ?? 10;
+      this._defaultValue = this._defaultValue ?? 0;      
+      this.value = this.value ?? this._defaultValue;  //set the value to the default value if not set.
+      this._scaleDisplay = this.scaleDisplay ?? "Pipe";
+      const arrMaxValue = [];
+      for (let i=0; i <= this._maxValue; i++) {
+        if (i%10 != 0) continue;
+        var row = {};
+        row.id = i;
+        if (this._scaleDisplay == "Pipe") row.display = "|"; 
+        if (this._scaleDisplay == "Number Scale") row.display = i;         
+        if (i == this._maxValue) {
+          row.align = "Right";
+          row.width = "";
+        } else {
+          row.align = "Left";
+          row.width = 10;
+        }
+        arrMaxValue.push(row);
+        
+      }
+      this._disabledStyle = this.readOnly ? "pointer-events: none;opacity:.5;" : ""; //if readonly, set the opacity to 50% and disable pointer events.
+      var scaleClass = "";
+      if(this._scaleDisplay == "None") {
+        scaleClass = "hidden";
+      }
+        debugger;
+        return html`
+                    <div class="slidecontainer" style="${this._disabledStyle}">
+                    <div class="${scaleClass}" style="margin: 5px;"><table style="width:100%"  ><tr>
+                    ${arrMaxValue.map((row) => html`
+                     <td width="${row.width}%" class=\"sliderValue valueAlign${row.align}\" >${row.display}</td>
+                    `)}
+                    </tr></table></div>
+        
+                    <input type="range" min="${this._minValue}" max="${this._maxValue}" value="${this.value}" class="slider" @change=${this.sliderChanged} @onchange=${this.sliderChanged} id="myRange">
+                    <table style="width:100%;padding-top: 5px;"><tr><td align=left>${this.minValueLabel}</td><td align=right>${this.maxValueLabel}</td></tr></table>
+                    </div>
+            
+        `;
+    
+                  }
+}
+const elementName = 'laketree-slider';
+customElements.define(elementName, LakeTreeSlider);
