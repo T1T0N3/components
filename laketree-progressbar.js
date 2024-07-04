@@ -54,7 +54,7 @@ export class LaketreeProgressbar extends LitElement {
       controlName: 'Questionnair score',
       iconUrl:
         'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
-      groupName: 'Score',
+      groupName: 'LakeTree',
       fallbackDisableSubmit: false,
       version: '1.2',
       standardProperties: {
