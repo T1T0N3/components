@@ -17,75 +17,8 @@ export class LaketreeProgressbar extends LitElement {
     background-color: var(--ntx-form-theme-color-primary);
     color: var(--ntx-form-theme-color-form-background);
   }
-    
-  `
 
-
-  static properties = {
-    value: {type: Number },
-    showLabel: {type: Boolean },
-  };
-
-  static getMetaConfig() {
-    return {
-      controlName: 'Laketree Progressbar',
-      iconUrl: "https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png",
-      groupName : 'LakeTree',
-      fallbackDisableSubmit: false,
-      version: '1.2',
-      standardProperties : {
-        visiblity: true
-      },
-      properties: {
-        value: {
-          type: 'number',
-          title: 'Value'
-        },
-        showLabel: {
-          title: 'Show Label',
-          type: 'boolean',
-          defaultValue: true,
-        },
-      }
-    };
-  }
-
-
-  constructor() {
-    super();
-  }
-
-  render() {
-    
-    this._showLabel = this.showLabel ?? true;
-    this._height = 10;
-    this._displayValue = "";
-
-    this._defaultValue = this.value;
-    this._defaultValue = this._defaultValue ?? 0;   
-    this._class ="p0";   
-
-
-    if (this._defaultValue == 0) {  
-      this._showLabel = false;
-       this._class = "p"+this._defaultValue;
-    }
-
-    if(this._showLabel) {
-        this._displayValue = this._defaultValue + '%';
-        this._class = "p"+this._defaultValue;
-        this._height = 18;
-      }
-
-
-    return html`
-    <style>
-
-    .laketree-pbar {
-      height:${this._height}px;          
-    }
-
-      @import "compass";
+   @import "compass";
       @import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600,600i,700,700i,900');
 
       body {
@@ -306,6 +239,73 @@ export class LaketreeProgressbar extends LitElement {
         }
 
       }
+    
+  `
+
+
+  static properties = {
+    value: {type: Number },
+    showLabel: {type: Boolean },
+  };
+
+  static getMetaConfig() {
+    return {
+      controlName: 'Laketree Progressbar',
+      iconUrl: "https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png",
+      groupName : 'LakeTree',
+      fallbackDisableSubmit: false,
+      version: '1.2',
+      standardProperties : {
+        visiblity: true
+      },
+      properties: {
+        value: {
+          type: 'number',
+          title: 'Value'
+        },
+        showLabel: {
+          title: 'Show Label',
+          type: 'boolean',
+          defaultValue: true,
+        },
+      }
+    };
+  }
+
+
+  constructor() {
+    super();
+  }
+
+  render() {
+    
+    this._showLabel = this.showLabel ?? true;
+    this._height = 10;
+    this._displayValue = "";
+
+    this._defaultValue = this.value;
+    this._defaultValue = this._defaultValue ?? 0;   
+    this._class ="p0";   
+
+
+    if (this._defaultValue == 0) {  
+      this._showLabel = false;
+       this._class = "p"+this._defaultValue;
+    }
+
+    if(this._showLabel) {
+        this._displayValue = this._defaultValue + '%';
+        this._class = "p"+this._defaultValue;
+        this._height = 18;
+      }
+
+
+    return html`
+    <style>
+
+    .laketree-pbar {
+      height:${this._height}px;          
+    }
 
     </style>
     
