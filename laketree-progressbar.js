@@ -1,166 +1,116 @@
-
-import {html,css, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+import {
+  html,
+  css,
+  LitElement,
+} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 // define the component
 export class LaketreeProgressbar extends LitElement {
+  static styles = css`
+    :host {
+      display: inline-block;
+    }
 
-  static styles = css` 
-  
-  .container{
-    width: 110px;
-    height: 110px;
-    margin: 100px auto;
-}
-.prec{
-    top: 30px;
-    position: relative;
-    font-size: 30px;
-}
+    .container {
+      width: 100%;
+    }
 
-.circle{
-    position: relative;
-    top: 5px;
-    left: 5px;
-    text-align: center;
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    background-color: #E6F4F7;
-}
+    .circle {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
 
-.active-border{
-    position: relative;
-    text-align: center;
-    width: 110px;
-    height: 110px;
-    border-radius: 100%;
+    .circle svg {
+      transform: rotate(-90deg);
+    }
 
-    background-color:#39B4CC;
-    background-image:
-        linear-gradient(91deg, transparent 50%, #A2ECFB 50%),
-        linear-gradient(90deg, #A2ECFB 50%, transparent 50%);
-    
-}
+    .circle circle {
+      fill: none;
+      stroke-width: 10;
+      stroke: var(--circle-bg-color, #e6e6e6);
+    }
 
-   
-    
-  `
+    .circle .progress {
+      stroke: var(--circle-color, #4caf50);
+      stroke-linecap: round;
+      stroke-dasharray: 314;
+      stroke-dashoffset: 314;
+      transition: stroke-dashoffset 1s ease;
+    }
 
-
-  static properties = {
-    value: {type: Number },
-    showLabel: {type: Boolean },
-  };
+    .circle .number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5em;
+      font-weight: bold;
+      color: var(--circle-text-color, #000);
+    }
+  `;
 
   static getMetaConfig() {
     return {
-      controlName: 'Laketree Progressbar',
-      iconUrl: "https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png",
-      groupName : 'LakeTree',
+      controlName: 'Questionnair score',
+      iconUrl:
+        'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
+      groupName: 'Score',
       fallbackDisableSubmit: false,
       version: '1.2',
-      standardProperties : {
-        visiblity: true
+      standardProperties: {
+        defaultValue: true,
+        description: true,
+        fieldLabel: true,
+        readOnly: true,
+        required: true,
+        visibility: true,
       },
       properties: {
-        value: {
-          type: 'number',
-          title: 'Value'
+        score: {
+          type: 'integer',
+          title: 'Score',
+          defaultValue: 0,
         },
-        showLabel: {
-          title: 'Show Label',
-          type: 'boolean',
-          defaultValue: true,
-        },
-      }
+      },
     };
   }
 
-var i = 0 , prec;
-var degs = $("#prec").attr("class").split(' ')[1];
-var activeBorder = $("#activeBorder");
-
-setTimeout(function(){
-    if($("#circle").is(":hover"))
-       loopit("c");
-    else
-       loopit("nc");
-},1);
-
-loopit(dir){
-    if (dir == "c")
-        i++
-    else
-        i--;
-    if (i < 0)
-        i = 0;
-    if (i > degs)
-        i = degs;
-    prec = (100*i)/360;   
-    $(".prec").html(Math.round(prec)+"%");
-    
-    if (i<=180){
-        activeBorder.css('background-image','linear-gradient(' + (90+i) + 'deg, transparent 50%, #A2ECFB 50%),linear-gradient(90deg, #A2ECFB 50%, transparent 50%)');
-    }
-    else{
-        activeBorder.css('background-image','linear-gradient(' + (i-90) + 'deg, transparent 50%, #39B4CC 50%),linear-gradient(90deg, #A2ECFB 50%, transparent 50%)');
-    }
-    
-    setTimeout(function(){
-        if($("#circle").is(":hover"))
-            loopit("c");
-        else
-           loopit("nc");
-    },1);
-    
-}
+  static properties = {
+    score: { type: Number },
+  };
 
   constructor() {
     super();
+    this.score = 0;
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('score')) {
+      this.updateCircle();
+    }
+  }
+
+  updateCircle() {
+    const radius = 50;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (this.score / 100) * circumference;
+    this.shadowRoot.querySelector('.progress').style.strokeDashoffset = offset;
   }
 
   render() {
-    
-    this._showLabel = this.showLabel ?? true;
-    this._height = 10;
-    this._displayValue = "";
-
-    this._defaultValue = this.value;
-    this._defaultValue = this._defaultValue ?? 0;   
-    this._class ="p0";   
-
-
-    if (this._defaultValue == 0) {  
-      this._showLabel = false;
-       this._class = "p"+this._defaultValue;
-    }
-
-    if(this._showLabel) {
-        this._displayValue = this._defaultValue + '%';
-        this._class = "p"+this._defaultValue;
-        this._height = 18;
-      }
-
-
     return html`
-    <style>
-
-    .laketree-pbar {
-      height:${this._height}px;          
-    }
-
-    </style>
-    
-  <div class="container">
-    <div id="activeBorder" class="active-border">
-        <div id="circle" class="circle">
-            <span class="prec 270" id="prec">0%</span>
+      <div class="container">
+        <div class="circle">
+          <svg width="100" height="100">
+            <circle cx="50" cy="50" r="50"></circle>
+            <circle class="progress" cx="50" cy="50" r="50"></circle>
+          </svg>
+          <div class="number">${this.score}%</div>
         </div>
-    </div>
-</div>
-
-        `;
+      </div>
+    `;
   }
 }
 
-const elementName = 'laketree-progressbar';
+const elementName = 'mapei-score';
 customElements.define(elementName, LaketreeProgressbar);
