@@ -196,7 +196,7 @@ export class SimpleTable extends LitElement {
       <table>
         <thead>
           <tr>
-            ${this.headers.map((header) => html`<th class='${header[1]}'>${header[0]}</th>`)}
+            ${this.headers.map((header) => html`<th class="${header[1]}">${header[0]}</th>`)}
           </tr>
         </thead>
         <tbody>
