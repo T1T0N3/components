@@ -3,7 +3,6 @@ import {
   css,
   LitElement,
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
-
 // define the component
 export class LaketreeProgressbar extends LitElement {
   static styles = css`
@@ -12,18 +11,13 @@ export class LaketreeProgressbar extends LitElement {
     }
 
     .container {
-      width: 300px; /* Aumentato */
-      height: 300px; /* Aumentato */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      width: 100%;
     }
 
     .circle {
       position: relative;
-      width: 250px; /* Aggiornato per garantire un margine */
-      height: 250px; /* Aggiornato per garantire un margine */
+      width: 100px;
+      height: 100px;
     }
 
     .circle svg {
@@ -32,7 +26,7 @@ export class LaketreeProgressbar extends LitElement {
 
     .circle circle {
       fill: none;
-      stroke-width: 10;
+      stroke-width: 5;
       width: 100%;
       height: auto;
       stroke: var(--circle-bg-color, #e6e6e6);
@@ -41,8 +35,8 @@ export class LaketreeProgressbar extends LitElement {
     .circle .progress {
       stroke: var(--circle-color, #4caf50);
       stroke-linecap: round;
-      stroke-dasharray: 625; /* Aggiornato per la nuova circonferenza */
-      stroke-dashoffset: 625; /* Aggiornato per la nuova circonferenza */
+      stroke-dasharray: 255;
+      stroke-dashoffset: 255;
       transition: stroke-dashoffset 1s ease;
     }
 
@@ -99,7 +93,7 @@ export class LaketreeProgressbar extends LitElement {
   }
 
   updateCircle() {
-    const radius = 100; // Aggiornato per la nuova dimensione
+    const radius = 40;
     const circumference = 2 * Math.PI * radius;
     const offset = circumference - (this.score / 100) * circumference;
     this.shadowRoot.querySelector('.progress').style.strokeDashoffset = offset;
@@ -109,10 +103,8 @@ export class LaketreeProgressbar extends LitElement {
     return html`
       <div class="container">
         <div class="circle">
-          <svg width="250" height="250">
-            <!-- Aggiornato -->
-            <circle class="progress" cx="125" cy="125" r="100"></circle>
-            <!-- Aggiornato -->
+          <svg width="100" height="100">
+            <circle class="progress" cx="50" cy="50" r="40"></circle>
           </svg>
           <div class="number">${this.score}%</div>
         </div>
