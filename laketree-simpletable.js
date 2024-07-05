@@ -178,5 +178,5 @@ export class SimpleTable extends LitElement {
   }
 }
 
-const elementName = 'simple-table';
+const elementName = 'mapei-table';
 customElements.define(elementName, SimpleTable);
