@@ -36,6 +36,9 @@ export class SimpleTable extends LitElement {
        writing-mode: vertical-rl;
        text-orientation: mixed;
     }
+     .td-width {
+       width: 3%;
+    }
   `;
 
    static getMetaConfig() {
@@ -75,7 +78,7 @@ export class SimpleTable extends LitElement {
   constructor() {
     super();
     this.headers = [
-      ['', ''],
+      ['', 'td-width'],
       ['EVALUATION QUESTIONNAIRE', ''],
       ['weight', 'text-vertical'],
       ['maximum weighted rating', 'text-vertical'],
