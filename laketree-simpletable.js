@@ -31,11 +31,10 @@ export class SimpleTable extends LitElement {
     tr:hover {
       background-color: #f1f1f1;
     }
-
+    
     .text-vertical {
        writing-mode: vertical-rl;
        text-orientation: mixed;
-    };
     }
   `;
 
@@ -193,6 +192,13 @@ export class SimpleTable extends LitElement {
 
   render() {
     return html`
+    <style>
+
+    .laketree-pbar {
+      height:${this._height}px;          
+    }
+
+    </style>
       <table>
         <thead>
           <tr>
