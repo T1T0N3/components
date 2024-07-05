@@ -158,7 +158,7 @@ export class SimpleTable extends LitElement {
 
   static getMetaConfig() {
     return {
-      controlName: 'Questionnair table legend',
+      controlName: 'Questionnaire table legend',
       iconUrl:
         'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
       groupName: 'LakeTree',
@@ -173,8 +173,14 @@ export class SimpleTable extends LitElement {
         visibility: true,
       },
       properties: {
-         headers: { type: Array , title: 'Headers',},
-         data: { type: Array,  title: 'Data', },
+        headers: {
+          type: Array,
+          title: 'Headers',
+        },
+        data: {
+          type: Array,
+          title: 'Data',
+        },
       },
     };
   }
