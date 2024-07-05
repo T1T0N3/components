@@ -180,4 +180,5 @@ export class SimpleTable extends LitElement {
   }
 }
 
-customElements.define('simple-table', SimpleTable);
+const elementName = 'simple-table';
+customElements.define(elementName, SimpleTable);
