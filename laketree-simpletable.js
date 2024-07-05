@@ -31,6 +31,12 @@ export class SimpleTable extends LitElement {
     tr:hover {
       background-color: #f1f1f1;
     }
+
+    .text-vertical {
+       writing-mode: vertical-rl;
+       text-orientation: mixed;
+    };
+    }
   `;
 
    static getMetaConfig() {
@@ -70,11 +76,11 @@ export class SimpleTable extends LitElement {
   constructor() {
     super();
     this.headers = [
-      '',
-      'EVALUATION QUESTIONNAIRE',
-      'weight',
-      'maximum weighted rating',
-      'SCORING CRITERIA'
+      ['', ''],
+      ['EVALUATION QUESTIONNAIRE', ''],
+      ['weight', 'text-vertical'],
+      ['maximum weighted rating', 'text-vertical'],
+      ['SCORING CRITERIA', ''],
     ];
     this.data = [
       [
@@ -190,14 +196,14 @@ export class SimpleTable extends LitElement {
       <table>
         <thead>
           <tr>
-            ${this.headers.map((header) => html`<th>${header}</th>`)}
+            ${this.headers.map((header) => html`<th class='${header[1]}'>${header[0]}</th>`)}
           </tr>
         </thead>
         <tbody>
           ${this.data.map(
             (row) => html`
               <tr>
-                ${row.map((cell) => html`<td>${cell}</td>`)}
+                ${row.map((cell) =>html`<td>${cell}</td>`)}
               </tr>
             `
           )}
