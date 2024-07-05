@@ -45,7 +45,7 @@ export class SimpleTable extends LitElement {
       'EVALUATION QUESTIONNAIRE',
       'weight',
       'maximum weighted rating',
-      'SCORING CRITERIA',
+      'SCORING CRITERIA'
     ];
     this.data = [
       [
@@ -53,93 +53,91 @@ export class SimpleTable extends LitElement {
         'Does your Company have an up-to-date ISO 9001 certification?',
         '3',
         '6',
-        'Score = 2. If your organisation has a Quality Management System certified by an external certification body according to ISO 9001 standard, please attach the certificate or provide a link where to find it.' +
-          'Score = 1. If you are not certified but you have a Quality Management System in place, please briefly describe it.' +
-          'Score = 0. If you are not certified and do not have a Quality Management System in place',
+        'Score = 2. If your organisation has a Quality Management System certified by an external certification body according to ISO 9001 standard, please attach the certificate or provide a link where to find it.Score = 1. If you are not certified but you have a Quality Management System in place, please briefly describe it.Score = 0. If you are not certified and do not have a Quality Management System in place'
       ],
       [
         '2',
         'Does your Company have an up-to-date ISO 14001 certification?',
         '3',
         '6',
-        'Score = 2. If your organisation has an Environmental Management System certified by an external certification body according to ISO 14001 standard, please attach the certificate or provide a link where to find it. Score = 1. If you are not certified but you have an Environmental Management System in place, please briefly describe it. Score = 0. If you are not certified and do not have an Environmental Management System in place',
+        'Score = 2. If your organisation has an Environmental Management System certified by an external certification body according to ISO 14001 standard, please attach the certificate or provide a link where to find it. Score = 1. If you are not certified but you have an Environmental Management System in place, please briefly describe it. Score = 0. If you are not certified and do not have an Environmental Management System in place'
       ],
       [
         '3',
         'Does your Company have an up-to-date ISO 45001 (or local standard - e.g. ANSI Z10, CSA Z1000, BSI 8800, or OSHA VPP certification...)?',
         '3',
         '6',
-        'Score = 2. If your organisation has an Health and Safety Management System certified by an exernal certification body according to ISO 45001 standard (or local standard), please attach the certificate or provide a link where to find it.Score = 1. If you are not certified but you have an Health and Safety Management System in place, please briefly describe it.Score = 0. If you are not certified and do not have an Health and Safety Management System in place',
+        'Score = 2. If your organisation has an Health and Safety Management System certified by an exernal certification body according to ISO 45001 standard (or local standard), please attach the certificate or provide a link where to find it.Score = 1. If you are not certified but you have an Health and Safety Management System in place, please briefly describe it.Score = 0. If you are not certified and do not have an Health and Safety Management System in place'
       ],
       [
         '4',
         'Does your Company have an  up-to-date SA8000, ETI, or other recognized certification?',
         '2',
         '4',
-        'Score = 2. If your organisation has a Social Accountability certification by an external certification body according to SA 8000 standard (ETI, or other recognized standard), please attach the certificate or provide a link where to find it.Score = 0. If you are not certified.',
+        'Score = 2. If your organisation has a Social Accountability certification by an external certification body according to SA 8000 standard (ETI, or other recognized standard), please attach the certificate or provide a link where to find it.Score = 0. If you are not certified.'
       ],
       [
         '5',
         'Does your Company have an up-to-date ISO 20400 certification?',
         '2',
         '4',
-        'Score = 2. If your organisation has a Sustainable Procurement Management System certified by an external certification body according to ISO 20400, please attach the certificate or provide a link where to find it.Score = 0. If you are not certified.',
+        'Score = 2. If your organisation has a Sustainable Procurement Management System certified by an external certification body according to ISO 20400, please attach the certificate or provide a link where to find it.Score = 0. If you are not certified.'
       ],
       [
         '6',
         'Does your Company have an up-to-date ISO 50001 certification?',
         '2',
         '4',
-        'Score = 2. If your organisation has an Energy Management System certified by an external certification body according to ISO 50001 standard, please attach the certificate or provide a link where to find it.Score = 1. If you are not certified but you undergo regular audit by external parties about your energy consumption Score = 0. If you are not certified and do not have an Energy Management System in place',
+        'Score = 2. If your organisation has an Energy Management System certified by an external certification body according to ISO 50001 standard, please attach the certificate or provide a link where to find it.Score = 1. If you are not certified but you undergo regular audit by external parties about your energy consumption Score = 0. If you are not certified and do not have an Energy Management System in place'
       ],
       [
         '7',
         'Does your Company publish a Sustainability Report?',
         '3',
         '6',
-        'Score = 2. If your organisation publishes a Sustainability report, please provide a copy or the link where to find it.Score = 0. If your organisation does not publish a Sustainability report.',
+        'Score = 2. If your organisation publishes a Sustainability report, please provide a copy or the link where to find it.Score = 0. If your organisation does not publish a Sustainability report.'
       ],
       [
         '8',
-        ' Is your most recent Report assured by a third party?',
+        'Is your most recent Report assured by a third party?',
         '1',
         '2',
-        'Score = 2. If your organisation publishes a Sustainability report, assured by a third party (please provide the name).Score = 0. If your organisation does not have a Sustainability report, assured by a third party.',
+        'Score = 2. If your organisation publishes a Sustainability report, assured by a third party (please provide the name).Score = 0. If your organisation does not have a Sustainability report, assured by a third party.'
       ],
       [
         '9',
         'Does your Company have a formalized policy related to human rights and social issues or to health and safety?',
         '2',
         '4',
-        'Score = 2. If your organisation has a formalized policy related to human rights and social issues or to health and safety, please provide a copy or a link. Score = 0. If your organisation does not have a formalized policy related to human rights and social issues or to health and safety.',
+        'Score = 2. If your organisation has a formalized policy related to human rights and social issues or to health and safety, please provide a copy or a link. Score = 0. If your organisation does not have a formalized policy related to human rights and social issues or to health and safety.'
       ],
       [
         '10',
         'Does your Company have a Code of Ethics or a Code of Conduct?',
         '3',
         '6',
-        'Score = 2. If your organisation has a Code of Ethics or a Code of Conduct, please provide a copy or a link.Score = 0. If your organisation does not have a Code of Ethics or a Code of Conduct."',
+        'Score = 2. If your organisation has a Code of Ethics or a Code of Conduct, please provide a copy or a link.Score = 0. If your organisation does not have a Code of Ethics or a Code of Conduct.'
       ],
       [
         '11',
         'Are there any particular actions or initiatives in place to reduce energy consumption or GHG emissions?',
         '1',
         '2',
-        'Score = 2, score = 1. Depending on the actions or initiatives in place to reduce energy consumption or GHG emissions, Mapei company will apply the most appropriate score. Score = 0. If you do not have actions or initiatives in place to reduce energy consumption or GHG emissions.',
+        'Score = 2, score = 1. Depending on the actions or initiatives in place to reduce energy consumption or GHG emissions, Mapei company will apply the most appropriate score. Score = 0. If you do not have actions or initiatives in place to reduce energy consumption or GHG emissions.'
       ],
       [
         '12',
         'Are there any particular actions or initiatives in place to reduce waste and water/paper/ consumption?',
         '1',
         '2',
-        '"Score = 2, score = 1. Depending on the actions or initiatives in place to reduce waste and water/paper/ consumption, Mapei company will apply the most appropriate score. Score = 0. If you do not have actions or initiatives in place to reduce waste and water/paper/ consumption.',
+        'Score = 2, score = 1. Depending on the actions or initiatives in place to reduce waste and water/paper/ consumption, Mapei company will apply the most appropriate score. Score = 0. If you do not have actions or initiatives in place to reduce waste and water/paper/ consumption.'
       ],
       [
         '13',
         'Does your company evaluate the environmental impacts of any of your products during its whole life cycle by LCA methodology according to ISO 14040? If yes, please specify in the comments',
         '1',
         '2',
-        '"Score = 2, score = 1. Depending on the initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products, Mapei company will apply the most appropriate score.Score = 0. If you do not have any particular initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products.',
+        'Score = 2, score = 1. Depending on the initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products, Mapei company will apply the most appropriate score.Score = 0. If you do not have any particular initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products.'
       ],
       [
         '14',
@@ -153,8 +151,8 @@ export class SimpleTable extends LitElement {
         'Does your production process use recycled material (pre-consumer or post-consumer) or by-product for any of your product?If yes, please specify in the comments',
         '1',
         '2',
-        'Score = 2, score = 1. Depending on the evidence of usage of recycled material (pre-consumer or post-consumer) or by-product for any of your product, Mapei company will apply the most appropriate score.Score = 0. If you do not use recycled material (pre-consumer or post-consumer) or by-product for any of your product.',
-      ],
+        'Score = 2, score = 1. Depending on the evidence of usage of recycled material (pre-consumer or post-consumer) or by-product for any of your product, Mapei company will apply the most appropriate score.Score = 0. If you do not use recycled material (pre-consumer or post-consumer) or by-product for any of your product.'
+      ]
     ];
   }
 
