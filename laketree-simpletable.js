@@ -174,14 +174,14 @@ export class SimpleTable extends LitElement {
         'Does your company evaluate the environmental impacts of any of your products during its whole life cycle by LCA methodology according to ISO 14040? If yes, please specify in the comments',
         '1',
         '2',
-        'Score = 2, score = 1. Depending on the initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products, Mapei company will apply the most appropriate score.Score = 0. If you do not have any particular initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products.'
+        'Score = 2. If you evaluate the environmental impacts of the product during its whole life cycle by LCA methodology according to ISO 14040,provide details (i.e. LCA report or EPD) Score = 0. If you do not evaluate any environmental impacts of the product during its whole life cycle by LCA methodology according to ISO 14040'
       ],
       [
         '14',
         'Does your Company have goals and targets to reduce, reuse, and recycle the amount of packaging used for its products?If yes, please specify in the comments',
         '1',
         '2',
-        'Score = 2, score = 1. Depending on the initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products, Mapei company will apply the most appropriate score.Score = 0. If you do not have any particular initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products.',
+        'Score = 2, score = 1. Depending on the initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products,Mapei company will apply the most appropriate score. Score = 0. If you do not have any particular initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products.',
       ],
       [
         '15',
