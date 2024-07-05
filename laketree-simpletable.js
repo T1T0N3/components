@@ -156,6 +156,29 @@ export class SimpleTable extends LitElement {
     ];
   }
 
+  static getMetaConfig() {
+    return {
+      controlName: 'Questionnair table legend',
+      iconUrl:
+        'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
+      groupName: 'LakeTree',
+      fallbackDisableSubmit: false,
+      version: '1.2',
+      standardProperties: {
+        defaultValue: true,
+        description: true,
+        fieldLabel: true,
+        readOnly: true,
+        required: true,
+        visibility: true,
+      },
+      properties: {
+         headers: { type: Array , title: 'Headers',},
+         data: { type: Array,  title: 'Data', },
+      },
+    };
+  }
+
   render() {
     return html`
       <table>
