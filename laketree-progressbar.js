@@ -53,7 +53,7 @@ export class LaketreeProgressbar extends LitElement {
 
   static getMetaConfig() {
     return {
-      controlName: 'Questionnair score',
+      controlName: 'Questionnaire score',
       iconUrl:
         'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
       groupName: 'LakeTree',
