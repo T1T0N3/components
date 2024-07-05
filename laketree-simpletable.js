@@ -33,11 +33,6 @@ export class SimpleTable extends LitElement {
     }
   `;
 
-  static properties = {
-    headers: { type: Array },
-    data: { type: Array },
-  };
-
    static getMetaConfig() {
     return {
       controlName: 'Questionnaire table legend',
@@ -56,16 +51,21 @@ export class SimpleTable extends LitElement {
       },
       properties: {
         headers: {
-          type: Array,
+          type: 'string',
           title: 'Headers',
         },
         data: {
-          type: Array,
+          type: 'string',
           title: 'Data',
         },
       },
     };
   }
+
+  static properties = {
+    headers: { type: Array },
+    data: { type: Array },
+  };
 
   constructor() {
     super();
