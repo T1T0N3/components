@@ -38,6 +38,35 @@ export class SimpleTable extends LitElement {
     data: { type: Array },
   };
 
+   static getMetaConfig() {
+    return {
+      controlName: 'Questionnaire table legend',
+      iconUrl:
+        'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
+      groupName: 'LakeTree',
+      fallbackDisableSubmit: false,
+      version: '1.2',
+      standardProperties: {
+        defaultValue: true,
+        description: true,
+        fieldLabel: true,
+        readOnly: true,
+        required: true,
+        visibility: true,
+      },
+      properties: {
+        headers: {
+          type: Array,
+          title: 'Headers',
+        },
+        data: {
+          type: Array,
+          title: 'Data',
+        },
+      },
+    };
+  }
+
   constructor() {
     super();
     this.headers = [
@@ -154,35 +183,6 @@ export class SimpleTable extends LitElement {
         'Score = 2, score = 1. Depending on the evidence of usage of recycled material (pre-consumer or post-consumer) or by-product for any of your product, Mapei company will apply the most appropriate score.Score = 0. If you do not use recycled material (pre-consumer or post-consumer) or by-product for any of your product.'
       ]
     ];
-  }
-
-  static getMetaConfig() {
-    return {
-      controlName: 'Questionnaire table legend',
-      iconUrl:
-        'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
-      groupName: 'LakeTree',
-      fallbackDisableSubmit: false,
-      version: '1.2',
-      standardProperties: {
-        defaultValue: true,
-        description: true,
-        fieldLabel: true,
-        readOnly: true,
-        required: true,
-        visibility: true,
-      },
-      properties: {
-        headers: {
-          type: Array,
-          title: 'Headers',
-        },
-        data: {
-          type: Array,
-          title: 'Data',
-        },
-      },
-    };
   }
 
   render() {
