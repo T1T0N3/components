@@ -1,10 +1,6 @@
-import {
-  html,
-  css,
-  LitElement,
-} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+import { html,css, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 
-class SimpleTable extends LitElement {
+export class SimpleTable extends LitElement {
   static styles = css`
     :host {
       display: block;
