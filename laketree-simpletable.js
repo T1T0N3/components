@@ -37,7 +37,7 @@ export class SimpleTable extends LitElement {
        text-orientation: mixed;
     }
      .td-width {
-       width: 5%;
+       width: 4%;
     }
   `;
 
