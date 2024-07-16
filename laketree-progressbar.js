@@ -45,7 +45,7 @@ export class LaketreeProgressbar extends LitElement {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 0.6em;
+      font-size: 1.0em;
       font-weight: bold;
       color: var(--circle-text-color, #000);
     }
