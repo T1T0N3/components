@@ -171,7 +171,7 @@ export class SimpleTable extends LitElement {
       ],
       [
         '13',
-        'Does your company evaluate the environmental impacts of any of your products during its whole life cycle by LCA methodology according to ISO 14040? If yes, please specify in the comments',
+        '13 - Does your company evaluate the environmental impacts of any of your products during its whole life cycle by LCA methodology according to ISO 14040, or the carbon footprint according to ISO 14067?',
         '1',
         '2',
         'Score = 2. If you evaluate the environmental impacts of the product during its whole life cycle by LCA methodology according to ISO 14040,provide details (i.e. LCA report or EPD) Score = 0. If you do not evaluate any environmental impacts of the product during its whole life cycle by LCA methodology according to ISO 14040'
