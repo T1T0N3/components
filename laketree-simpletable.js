@@ -164,7 +164,7 @@ export class SimpleTable extends LitElement {
       ],
       [
         '12',
-        'Are there any particular actions or initiatives in place to reduce waste and water/paper/ consumption?',
+        'Are there any particular actions or initiatives in place to reduce waste and water/paper/ consumption? Dose your Company have goals and targets to reduce, reuse, and recycle the amount of packaging used for its products?',
         '1',
         '2',
         'Score = 2, score = 1. Depending on the actions or initiatives in place to reduce waste and water/paper/ consumption, Mapei company will apply the most appropriate score. Score = 0. If you do not have actions or initiatives in place to reduce waste and water/paper/ consumption.'
@@ -178,10 +178,10 @@ export class SimpleTable extends LitElement {
       ],
       [
         '14',
-        'Does your Company have goals and targets to reduce, reuse, and recycle the amount of packaging used for its products?If yes, please specify in the comments',
+        'Does your Company have sites/operations located in or near to biodiversity and ecosystem-sensitive areas, negatively affected by your activities?',
         '1',
         '2',
-        'Score = 2, score = 1. Depending on the initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products,Mapei company will apply the most appropriate score. Score = 0. If you do not have any particular initiatives in place to reduce, reuse, and recycle the amount of packaging used for your products.',
+        'Score = 4 Company has not sites/operations located in or near to biodiversity and ecosystem-sensitive areas, score = 2. Depending on actions to protect biodiversity and ecosystem. Score = 0. If you do not have any particular initiatives in place to protect biodiversity and ecosystem.',
       ],
       [
         '15',
