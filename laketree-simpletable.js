@@ -45,16 +45,16 @@ export class SimpleTable extends LitElement {
     return {
       controlName: 'Questionnaire table legend',
       iconUrl:
-        'https://laketree.com/wp-content/themes/laketree/img/favicon/favicon-32x32.png',
-      groupName: 'LakeTree',
+        'https://sp.mapei.group/sites/mapeinetit/en/SiteAssets/logo_mapei_inet.png',
+      groupName: 'Mapei Custom Fields',
       fallbackDisableSubmit: false,
       version: '1.2',
       standardProperties: {
-        defaultValue: true,
-        description: true,
-        fieldLabel: true,
-        readOnly: true,
-        required: true,
+        defaultValue: false,
+        description: false,
+        fieldLabel: false,
+        readOnly: false,
+        required: false,
         visibility: true,
       },
       properties: {
