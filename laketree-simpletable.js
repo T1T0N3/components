@@ -180,7 +180,7 @@ export class SimpleTable extends LitElement {
         '14',
         'Does your Company have sites/operations located in or near to biodiversity and ecosystem-sensitive areas, negatively affected by your activities?',
         '1',
-        '2',
+        '4',
         'Score = 4 Company has not sites/operations located in or near to biodiversity and ecosystem-sensitive areas, score = 2. Depending on actions to protect biodiversity and ecosystem. Score = 0. If you do not have any particular initiatives in place to protect biodiversity and ecosystem.',
       ],
       [
