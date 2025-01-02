@@ -51,8 +51,8 @@ export class SimpleTable extends LitElement {
       version: '1.2',
       standardProperties: {
         defaultValue: false,
-        description: false,
-        fieldLabel: false,
+        description: true,
+        fieldLabel: true,
         readOnly: false,
         required: false,
         visibility: true,
