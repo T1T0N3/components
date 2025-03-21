@@ -1,1 +1,3 @@
-.theme-entry * { --main-font-family: "Comic Sans MS" !important;}
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox.watermark, .theme-entry .input-control-watermark {
+    background-color: yellow;
+}
