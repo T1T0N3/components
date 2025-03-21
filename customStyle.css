@@ -1,1 +1,3 @@
-input {background-color: red !important;}
+html .theme-entry {
+                                    --page-background-color: red;
+        }
