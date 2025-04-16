@@ -1,4 +1,6 @@
-.theme-entry .input-control.active .input-control-content {
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox,
+.theme-entry .input-control .input-control-m-c,
+.theme-entry .input-control .input-control-content { {
    position: relative;
     display: block;
     float: left;
