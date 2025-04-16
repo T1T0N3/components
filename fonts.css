@@ -1,5 +1,17 @@
 .theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox.watermark, .theme-entry .input-control-watermark {
-    background-color: yellow;
+   position: relative;
+    display: block;
+    float: left;
+    line-height: normal;
+    border: 1px solid #c4c7cc;
+    background-color: white;
+    border-radius: 5px;
+    margin: 0;
+    padding: 10px;
+    color: #323232;
+    width: 100%;
+    transition: border-color 0.25s ease;
+    font-size: 14px;
 }
 
 .custom-input {
