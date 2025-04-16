@@ -1,3 +1,7 @@
 .theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox.watermark, .theme-entry .input-control-watermark {
     background-color: yellow;
 }
+
+.custom-input {
+    background-color: green;
+}
