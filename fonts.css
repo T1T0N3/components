@@ -1,4 +1,4 @@
-.theme-entry .editor-cell .droptarget {
+.theme-entry .input-control.active .input-control-content {
    position: relative;
     display: block;
     float: left;
