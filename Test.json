@@ -2,7 +2,8 @@
   "openapi": "3.0.3",
   "info": {
     "title": "SharePoint List API",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "description": "REST API per recuperare informazioni da una lista SharePoint"
   },
   "servers": [
     {
@@ -10,37 +11,31 @@
     }
   ],
   "paths": {
-    "/_api/web/Lists/getbytitle('{listTitle}')/ItemCount": {
-      "get": {
-        "summary": "Ottieni ItemCount",
-        "parameters": [
-          {
-            "name": "listTitle",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "Elenco dei Volontari"
-            }
+  "/_api/web/Lists/getbytitle('{listTitle}')/ItemCount?$format=application/json;odata=nometadata": {
+    "get": {
+      "summary": "Ottieni ItemCount senza metadata",
+      "parameters": [
+        {
+          "name": "listTitle",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "Elenco dei Volontari"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "d": {
-                      "type": "object",
-                      "properties": {
-                        "ItemCount": {
-                          "type": "integer",
-                          "example": 42
-                        }
-                      }
-                    }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ItemCount": {
+                    "type": "integer",
+                    "example": 42
                   }
                 }
               }
@@ -50,4 +45,5 @@
       }
     }
   }
+}
 }
