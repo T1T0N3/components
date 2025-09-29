@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "SharePoint List API",
+    "version": "1.0.0",
+    "description": "API to get the item count of a SharePoint list"
+  },
+  "servers": [
+    {
+      "url": "https://{sharepointSite}",
+      "description": "SharePoint site",
+      "variables": {
+        "sharepointSite": {
+          "default": "mapeigroup.onmicrosoft.com",
+          "description": "The SharePoint site domain and path"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/_api/web/Lists/getbytitle('{listTitle}')/ItemCount": {
+      "get": {
+        "summary": "Get Item Count",
+        "description": "Returns the total number of items in the specified SharePoint list",
+        "parameters": [
+          {
+            "name": "listTitle",
+            "in": "path",
+            "required": true,
+            "description": "The title of the SharePoint list (URL encoded if needed)",
+            "schema": {
+              "type": "string",
+              "example": "Elenco dei Volontari"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with item count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "type": "object",
+                      "properties": {
+                        "ItemCount": {
+                          "type": "integer",
+                          "example": 42
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": { "type": "string" },
+                        "message": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
