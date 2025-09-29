@@ -1,52 +1,47 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.3",
   "info": {
-    "title": "SharePoint Volontari Service",
-    "version": "1.0.0"
+    "title": "SharePoint Item Count (Base)",
+    "version": "1.0.0",
+    "description": "Recupera il conteggio totale degli elementi di una lista SharePoint tramite ItemCount endpoint."
   },
-  "host": "mapeigroup.sharepoint.com",
-  "basePath": "/sites/un-giorno-per-gli-altri-dev/_api",
-  "schemes": ["https"],
+  "servers": [
+    {
+      "url": "https://mapeigroup.sharepoint.com/sites/un-giorno-per-gli-altri-dev"
+    }
+  ],
   "paths": {
-    "/web/Lists/getbytitle('Elenco dei Volontari')/Items": {
+    "/_api/web/Lists/getbytitle('{listTitle}')/ItemCount": {
       "get": {
-        "summary": "Recupera gli ID dei volontari per Evento e Stato di Iscrizione",
-        "operationId": "GetVolontariFiltrati",
-        "produces": ["application/json"],
+        "summary": "Ottieni Conteggio Totale Lista",
+        "operationId": "GetTotalItemCount",
         "parameters": [
           {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filtro OData per IDEvento e StatoIscrizione. Esempio: IDEvento eq 53 and StatoIscrizione eq 'Iscritto'",
+            "name": "listTitle",
+            "in": "path",
+            "description": "Il titolo della lista SharePoint. Assicurarsi che K2 gestisca gli apici singoli nel path.",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Campi da selezionare (es. ID). Lascia come '$select=ID' per il conteggio.",
-            "required": false,
-            "type": "string",
-            "default": "ID"
+            "schema": {
+              "type": "string",
+              "example": "Elenco dei Volontari"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Lista di oggetti con gli ID dei volontari.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "d": {
+            "description": "Conteggio totale della lista. La risposta JSON include l'oggetto 'd' con la proprietà 'ItemCount'.",
+            "content": {
+              "application/json": {
+                "schema": {
                   "type": "object",
                   "properties": {
-                    "results": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "ID": {
-                            "type": "integer"
-                          }
+                    "d": {
+                      "type": "object",
+                      "properties": {
+                        "ItemCount": {
+                          "type": "integer",
+                          "description": "Il valore numerico del conteggio.",
+                          "example": 42
                         }
                       }
                     }
