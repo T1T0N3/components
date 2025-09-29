@@ -2,8 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "SharePoint List API",
-    "version": "1.0.0",
-    "description": "REST API per recuperare informazioni da una lista SharePoint"
+    "version": "1.0.0"
   },
   "servers": [
     {
@@ -13,35 +12,38 @@
   "paths": {
     "/_api/web/Lists/getbytitle('{listTitle}')/ItemCount": {
       "get": {
-        "summary": "Ottieni il numero di elementi in una lista",
+        "summary": "Ottieni ItemCount",
         "parameters": [
           {
             "name": "listTitle",
             "in": "path",
             "required": true,
-            "description": "Titolo della lista di SharePoint",
             "schema": {
               "type": "string",
               "example": "Elenco dei Volontari"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "application/json;odata=nometadata"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "ItemCount trovato",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "d": {
-                      "type": "object",
-                      "properties": {
-                        "ItemCount": {
-                          "type": "integer",
-                          "example": 42
-                        }
-                      }
+                    "ItemCount": {
+                      "type": "integer",
+                      "example": 42
                     }
                   }
                 }
