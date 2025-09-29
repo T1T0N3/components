@@ -1,41 +1,55 @@
 {
-  "openapi": "3.0.3",
+  "swagger": "2.0",
   "info": {
-    "title": "SharePoint List API",
-    "version": "1.0.0",
-    "description": "REST API per recuperare informazioni da una lista SharePoint"
+    "title": "SharePoint Volontari Service",
+    "version": "1.0.0"
   },
-  "servers": [
-    {
-      "url": "https://mapeigroup.sharepoint.com/sites/un-giorno-per-gli-altri-dev"
-    }
-  ],
+  "host": "mapeigroup.sharepoint.com",
+  "basePath": "/sites/un-giorno-per-gli-altri-dev/_api",
+  "schemes": ["https"],
   "paths": {
-  "/_api/web/Lists/getbytitle('{listTitle}')/ItemCount?$format=application/json;odata=nometadata": {
-    "get": {
-      "summary": "Ottieni ItemCount senza metadata",
-      "parameters": [
-        {
-          "name": "listTitle",
-          "in": "path",
-          "required": true,
-          "schema": {
+    "/web/Lists/getbytitle('Elenco dei Volontari')/Items": {
+      "get": {
+        "summary": "Recupera gli ID dei volontari per Evento e Stato di Iscrizione",
+        "operationId": "GetVolontariFiltrati",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filtro OData per IDEvento e StatoIscrizione. Esempio: IDEvento eq 53 and StatoIscrizione eq 'Iscritto'",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Campi da selezionare (es. ID). Lascia come '$select=ID' per il conteggio.",
+            "required": false,
             "type": "string",
-            "example": "Elenco dei Volontari"
+            "default": "ID"
           }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "OK",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "ItemCount": {
-                    "type": "integer",
-                    "example": 42
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista di oggetti con gli ID dei volontari.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ID": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -45,5 +59,4 @@
       }
     }
   }
-}
 }
