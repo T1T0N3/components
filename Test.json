@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "SharePoint Item Count (Swagger 2.0)",
+    "title": "SharePoint Item Count (Final JSON)",
     "version": "1.0.0",
-    "description": "Recupera il conteggio totale degli elementi di una lista SharePoint utilizzando odata=nometadata."
+    "description": "Recupera il conteggio forzando la risposta JSON tramite header Accept."
   },
   "host": "mapeigroup.sharepoint.com",
   "basePath": "/sites/un-giorno-per-gli-altri-dev",
@@ -22,26 +22,36 @@
           {
             "name": "listTitle",
             "in": "path",
-            "description": "Il titolo della lista SharePoint. Assicurarsi che K2 gestisca gli apici singoli nel path.",
+            "description": "Il titolo della lista SharePoint.",
             "required": true,
             "type": "string"
           },
           {
-            "name": "$format",
-            "in": "query",
-            "description": "Forza la risposta odata=nometadata per ottenere un Integer diretto.",
+            "name": "Accept",
+            "in": "header",
+            "description": "Forza il formato di risposta JSON per garantire la corretta deserializzazione.",
             "required": true,
             "type": "string",
-            "default": "application/json;odata=nometadata"
+            "default": "application/json;odata=verbose"
           }
         ],
         "responses": {
           "200": {
-            "description": "Conteggio totale (risposta Integer diretta).",
+            "description": "Risposta JSON con conteggio.",
             "schema": {
-              "type": "integer",
-              "format": "int32",
-              "example": 42
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "ItemCount": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 110
+                    }
+                  }
+                }
+              }
             }
           }
         }
