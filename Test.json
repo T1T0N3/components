@@ -1,0 +1,72 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "SharePoint List API",
+    "version": "1.0.0",
+    "description": "REST API per recuperare informazioni da una lista SharePoint"
+  },
+  "servers": [
+    {
+      "url": "https://mapeigroup.sharepoint.com/sites/un-giorno-per-gli-altri-dev",
+      "variables": {
+        "tenant": {
+          "default": "mapeigroup.sharepoint.com",
+          "description": "Il tenant di SharePoint (prima di .sharepoint.com)"
+        },
+        "siteName": {
+          "default": "un-giorno-per-gli-altri-dev",
+          "description": "Il nome del sito SharePoint"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/_api/web/Lists/getbytitle('{listTitle}')/ItemCount": {
+      "get": {
+        "summary": "Ottieni il numero di elementi in una lista",
+        "description": "Ritorna l'ItemCount per la lista specificata",
+        "parameters": [
+          {
+            "name": "Elenco dei Volontari",
+            "in": "path",
+            "required": true,
+            "description": "Titolo della lista di SharePoint",
+            "schema": {
+              "type": "string",
+              "example": "Elenco dei Volontari"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ItemCount trovato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "type": "object",
+                      "properties": {
+                        "ItemCount": {
+                          "type": "integer",
+                          "example": 42
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Non autorizzato (controlla OAuth)"
+          },
+          "404": {
+            "description": "Lista non trovata"
+          }
+        }
+      }
+    }
+  }
+}
