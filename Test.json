@@ -1,14 +1,17 @@
 {
-  "openapi": "3.0.3",
+  "swagger": "2.0",
   "info": {
-    "title": "SharePoint Item Count (Base)",
+    "title": "SharePoint Item Count (Swagger 2.0)",
     "version": "1.0.0",
-    "description": "Recupera il conteggio totale degli elementi di una lista SharePoint tramite ItemCount endpoint."
+    "description": "Recupera il conteggio totale degli elementi di una lista SharePoint utilizzando odata=nometadata."
   },
-  "servers": [
-    {
-      "url": "https://mapeigroup.sharepoint.com/sites/un-giorno-per-gli-altri-dev"
-    }
+  "host": "mapeigroup.sharepoint.com",
+  "basePath": "/sites/un-giorno-per-gli-altri-dev",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
   ],
   "paths": {
     "/_api/web/Lists/getbytitle('{listTitle}')/ItemCount": {
@@ -21,33 +24,24 @@
             "in": "path",
             "description": "Il titolo della lista SharePoint. Assicurarsi che K2 gestisca gli apici singoli nel path.",
             "required": true,
-            "schema": {
-              "type": "string",
-              "example": "Elenco dei Volontari"
-            }
+            "type": "string"
+          },
+          {
+            "name": "$format",
+            "in": "query",
+            "description": "Forza la risposta odata=nometadata per ottenere un Integer diretto.",
+            "required": true,
+            "type": "string",
+            "default": "application/json;odata=nometadata"
           }
         ],
         "responses": {
           "200": {
-            "description": "Conteggio totale della lista. La risposta JSON include l'oggetto 'd' con la proprietà 'ItemCount'.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "d": {
-                      "type": "object",
-                      "properties": {
-                        "ItemCount": {
-                          "type": "integer",
-                          "description": "Il valore numerico del conteggio.",
-                          "example": 42
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+            "description": "Conteggio totale (risposta Integer diretta).",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 42
             }
           }
         }
